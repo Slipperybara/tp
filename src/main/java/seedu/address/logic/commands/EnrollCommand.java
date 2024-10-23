@@ -67,7 +67,7 @@ public class EnrollCommand extends Command {
         }
         Tutorial tutorial = optionalTutorial.get();
 
-        Participation p = new seedu.address.model.participation.Participation(student, tutorial);
+        Participation p = new Participation(student, tutorial);
         if (tutorial.hasParticipation(p)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }

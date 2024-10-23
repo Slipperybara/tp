@@ -98,7 +98,7 @@ public class Person {
      */
     public boolean hasParticipation(Participation participation) {
         return participationList.stream()
-                .anyMatch(currentParticipation -> currentParticipation.equals(participation));
+                .anyMatch(currentParticipation -> currentParticipation.isSameParticipation(participation));
 
     }
 
@@ -129,6 +129,16 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+
+    /**
+     * Create a new person object to ensure immutability
+     * @return a copy of person
+     */
+    public Person copy() {
+        return new Person(this.name, this.phone, this.email, this.address, this.payment, this.participationList,
+                this.tags);
     }
 
     /**
@@ -174,14 +184,4 @@ public class Person {
                 .add("tags", tags)
                 .toString();
     }
-
-    /**
-     * Create a new person object to ensure immutability
-     * @return a copy of person
-     */
-    public Person copy() {
-        return new Person(this.name, this.phone, this.email, this.address, this.payment, this.participationList,
-                this.tags);
-    }
-
 }
