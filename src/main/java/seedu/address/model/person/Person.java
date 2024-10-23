@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -65,7 +66,7 @@ public class Person {
     }
 
     public List<Participation> getParticipation() {
-        return participationList;
+        return new ArrayList<>(participationList);
     }
     public String getFullName() {
         return name.fullName;
@@ -137,7 +138,8 @@ public class Person {
      * @return a copy of person
      */
     public Person copy() {
-        return new Person(this.name, this.phone, this.email, this.address, this.payment, this.participationList,
+        return new Person(this.name, this.phone, this.email, this.address, this.payment,
+                this.participationList.stream().map(Participation::copy).toList(),
                 this.tags);
     }
 

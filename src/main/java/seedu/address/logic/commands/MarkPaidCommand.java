@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -62,11 +63,13 @@ public class MarkPaidCommand extends Command {
                 updatedPayment, personToMarkPayment.getParticipation(), personToMarkPayment.getTags());
 
         model.setPerson(personToMarkPayment, markedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         // Enroll student back
         for (Participation p: participationList) {
             new EnrollCommand(targetIndex, p.getTutorialSubject()).execute(model);
         }
+
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(String.format(MESSAGE_MARKED_PAID_SUCCESS, Messages.format(markedPerson)));
     }
 
