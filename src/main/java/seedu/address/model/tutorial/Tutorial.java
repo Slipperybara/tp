@@ -20,14 +20,27 @@ public class Tutorial {
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+$";
 
     private final String subject;
-    private final List<Participation> participationList = new ArrayList<>();
+    private final List<Participation> participationList;
 
     /**
      * Every field must be present and not null.
+     * @param subject String name of subject
      */
     public Tutorial(String subject) {
+        requireAllNonNull(subject);
+        this.subject = subject;
+        this.participationList = new ArrayList<>();
+    }
+
+    /**
+     * Overloads constructor to include participationList
+     * @param subject String name of subject
+     * @param participationList List of participation
+     */
+    public Tutorial(String subject, List<Participation> participationList) {
         requireAllNonNull(subject, participationList);
         this.subject = subject;
+        this.participationList = participationList;
     }
 
     public static boolean isValidTutorial(String test) {
@@ -80,6 +93,15 @@ public class Tutorial {
         return otherTutorial != null && otherTutorial.getSubject().equals(getSubject());
     }
 
+    /**
+     * Creates a new tutorial object to ensure immutability
+     * @return a copy of this
+     */
+    public Tutorial copy() {
+        return new Tutorial(this.subject,
+                this.participationList.stream().map(Participation::copy).toList());
+    }
+
 
     /**
      * Returns true if both tutorials have the same data fields.
@@ -103,6 +125,7 @@ public class Tutorial {
     public int hashCode() {
         return Objects.hash(subject);
     }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)

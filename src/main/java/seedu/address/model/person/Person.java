@@ -175,4 +175,13 @@ public class Person {
                 .toString();
     }
 
+    /**
+     * Create a new person object to ensure immutability
+     * @return a copy of person
+     */
+    public Person copy() {
+        return new Person(this.name, this.phone, this.email, this.address, this.payment, this.participationList,
+                this.tags);
+    }
+
 }

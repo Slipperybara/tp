@@ -83,6 +83,11 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        List<Participation> participationList = personToEdit.getParticipation();
+        // UnEnroll student from current participation first
+        for (Participation p: participationList) {
+            new UnEnrollCommand(index, p.getTutorialSubject()).execute(model);
+        }
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -91,6 +96,10 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        // Enroll student back
+        for (Participation p: participationList) {
+            new EnrollCommand(index, p.getTutorialSubject()).execute(model);
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
@@ -109,7 +118,6 @@ public class EditCommand extends Command {
         List<Participation> updatedParticipation = editPersonDescriptor.getParticipation()
                 .orElse(personToEdit.getParticipation());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedPayment, updatedParticipation, updatedTags);
     }

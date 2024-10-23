@@ -55,6 +55,14 @@ public class Attendance {
         return "Attended on: " + attendanceDate.format(formatter);
     }
 
+    /**
+     * Creates a new attendance object to ensure immutability
+     * @return a copy of this
+     */
+    public Attendance copy() {
+        return new Attendance(this.attendanceDate);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

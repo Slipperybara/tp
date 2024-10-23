@@ -16,23 +16,47 @@ import seedu.address.model.tutorial.Tutorial;
 public class Participation {
     private final Person student;
     private final Tutorial tutorial;
-    private final List<Attendance> attendanceList = new ArrayList<>();
+    private final List<Attendance> attendanceList;
+
 
     /**
      * Every field must be present and not null
+     * @param student Person object to be added
+     * @param tutorial Tutorial object to be added
      */
     public Participation(Person student, Tutorial tutorial) {
+        requireAllNonNull(student, tutorial);
+        this.student = student;
+        this.tutorial = tutorial;
+        this.attendanceList = new ArrayList<>();
+    }
+
+
+    /**
+     * Overloads constructor to include attendance list
+     * @param student Person object to be added
+     * @param tutorial Tutorial object to be added
+     * @param attendanceList List of Attendance objects
+     */
+    public Participation(Person student, Tutorial tutorial, List<Attendance> attendanceList) {
         requireAllNonNull(student, tutorial, attendanceList);
         this.student = student;
         this.tutorial = tutorial;
+        this.attendanceList = attendanceList;
     }
 
+    /**
+     * @return a copy of the student
+     */
     public Person getStudent() {
-        return student;
+        return student.copy();
     }
 
+    /**
+     * @return a copy of the tutorial
+     */
     public Tutorial getTutorial() {
-        return tutorial;
+        return tutorial.copy();
     }
     public String getTutorialSubject() {
         return tutorial.getSubject();
@@ -61,8 +85,33 @@ public class Participation {
                                         && otherParticipation.getStudent().equals(getStudent());
     }
 
+    /**
+     * Creates a new participation object to ensure immutability
+     * @return a copy of this
+     */
+    public Participation copy() {
+        return new Participation(getStudent(), getTutorial(),
+                this.attendanceList.stream().map(Attendance::copy).toList());
+    }
+
     @Override
     public String toString() {
         return String.format("Attends: %s", tutorial.toString());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Participation)) {
+            return false;
+        }
+
+        Participation otherParticipation = (Participation) other;
+        return student.equals(otherParticipation.student)
+                && tutorial.equals(otherParticipation.tutorial)
+                && attendanceList.equals(otherParticipation.attendanceList);
     }
 }

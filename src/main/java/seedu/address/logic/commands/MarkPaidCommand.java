@@ -10,6 +10,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.participation.Participation;
 import seedu.address.model.person.Fees;
 import seedu.address.model.person.Payment;
 import seedu.address.model.person.Person;
@@ -49,6 +50,12 @@ public class MarkPaidCommand extends Command {
         }
 
         Person personToMarkPayment = lastShownList.get(targetIndex.getZeroBased());
+
+        List<Participation> participationList = personToMarkPayment.getParticipation();
+        // UnEnroll student from current participation first
+        for (Participation p: participationList) {
+            new UnEnrollCommand(targetIndex, p.getTutorialSubject()).execute(model);
+        }
         Payment updatedPayment = calculatePayment(personToMarkPayment.getPayment(), fees);
         Person markedPerson = new Person(personToMarkPayment.getName(), personToMarkPayment.getPhone(),
                 personToMarkPayment.getEmail(), personToMarkPayment.getAddress(),
@@ -56,6 +63,10 @@ public class MarkPaidCommand extends Command {
 
         model.setPerson(personToMarkPayment, markedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        // Enroll student back
+        for (Participation p: participationList) {
+            new EnrollCommand(targetIndex, p.getTutorialSubject()).execute(model);
+        }
         return new CommandResult(String.format(MESSAGE_MARKED_PAID_SUCCESS, Messages.format(markedPerson)));
     }
 
