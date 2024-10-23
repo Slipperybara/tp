@@ -86,12 +86,10 @@ public class Participation {
     }
 
     /**
-     * Creates a new participation object to ensure immutability
-     * @return a copy of this
+     * @return this (not a copy)
      */
     public Participation copy() {
-        return new Participation(getStudent(), getTutorial(),
-                this.attendanceList.stream().map(Attendance::copy).toList());
+        return this;
     }
 
     @Override
