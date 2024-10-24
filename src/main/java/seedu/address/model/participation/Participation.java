@@ -1,7 +1,6 @@
 package seedu.address.model.participation;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.person.Address.VALIDATION_REGEX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,9 +59,6 @@ public class Participation {
     }
     public String getTutorialSubject() {
         return tutorial.getSubject();
-    }
-    public static Boolean isValidParticipationList(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     /**
