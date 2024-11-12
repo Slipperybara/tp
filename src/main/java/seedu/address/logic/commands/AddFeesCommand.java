@@ -19,7 +19,7 @@ import seedu.address.model.person.Payment;
 import seedu.address.model.person.Person;
 
 /**
- * Marks the payment for a person as true
+ * Adds fees to a student's overdue amount
  */
 public class AddFeesCommand extends Command {
     public static final String COMMAND_WORD = "addfees";
@@ -36,7 +36,7 @@ public class AddFeesCommand extends Command {
     private final Fees feesToCharge;
 
     /**
-     * Marks whether an existing person has paid their feesPaidByStudent for the month
+     * Increments a student's fees
      * @param targetIndex index of the student to mark payment based on the displayed list
      */
     public AddFeesCommand(Index targetIndex, Fees feesToCharge) {
@@ -93,6 +93,7 @@ public class AddFeesCommand extends Command {
                 .filtered(participation -> participation.getStudent().isSamePerson(originalStudent));
 
         if (participationsToUpdate.isEmpty()) {
+            logger.warning(String.format(Messages.MESSAGE_LOGGER_FOR_EXCEPTION, AddFeesCommand.class));
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_ENROLLED_FOR_PAYMENT,
                     updatedStudent.getName()));
         }
@@ -129,7 +130,7 @@ public class AddFeesCommand extends Command {
     }
 
     /**
-     * Calculates the new overdue amount after feesPaidByStudent paid by student
+     * Calculates the new overdue amount after fees added for student
      *
      * @param currentPayment current overdue amount
      * @param feesToCharge Fees paid by student

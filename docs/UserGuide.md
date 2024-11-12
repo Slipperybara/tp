@@ -10,6 +10,7 @@ title: User Guide
 <br>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## **Table of Contents**
 
@@ -97,6 +98,7 @@ title: User Guide
   9. An EduVault interface similar to the [below](#12-introduction-to-the-interface) should appear in a few seconds. Note that the app will contain some sample data.
 
 <br>
+<div style="page-break-after: always;"></div>
 
 #### **1.2 Introduction to the interface**
 
@@ -114,6 +116,7 @@ When EduVault is first started, you will see an interface like the one below, ma
 * **Tutorial Box:** Displays the tutorials or classes that each student is currently enrolled in, along with their attendance
 
 <br>
+<div style="page-break-after: always;"></div>
 
 #### **1.3 Brief Walkthrough**
 
@@ -138,6 +141,8 @@ Continue reading this guide to learn about the full functionalities of EduVault.
 </div>
 
 ---
+<div style="page-break-after: always;"></div>
+
 ### **2. General Command Format**
 
 The commands in EduVault follow a general format of `COMMAND INDEX PREFIX/...` .
@@ -159,6 +164,8 @@ This is a general command format, not ALL commands follow this format! For the s
 </div>
 
 ---
+<div style="page-break-after: always;"></div>
+
 ### **3. Adding data**
 
 The commands in this section are used to add new records to the system, such as students and tutorials.
@@ -172,15 +179,26 @@ Command: `add`
 
 Usage: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…`
 
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+
+Fields wrapped in square brackets `[]` are optional, so the TAG field here is optional.
+</div>
+
+<div markdown="span" class="alert alert-success">:bulb:
+**Tip:**
+
+This command is best used with reference to its usages in the [Prefix Table](#11-prefix-table)
+</div>
+
 {% raw %}
 <div markdown="1" class="smaller-text">
 Fields
 
-* `NAME`: Should only contain alphanumeric characters and spaces and it should not be blank
-* `PHONE`: Should only contain numbers and must be at least 3 digits long
-* `EMAIL`: Should be of the format local-part@domain
-* `ADDRESS`: Can take in any values and should not be blank
-* `TAG`: Should only contain alphanumeric characters and no spaces
+* `NAME`: Name of the student to add
+* `PHONE`: Phone number of the student to add
+* `EMAIL`: Email of the student to add
+* `ADDRESS`: Address of the student to add
+* `TAG`: Tag(s) of the student to add
 
 </div>
 {% endraw %}
@@ -194,11 +212,26 @@ Example usages
 
 Invalid usages
 * Student already exists in EduVault
-  * *Error message: This person already exists in the address book.*
+  * *Error message: This student already exists in EduVault.*
 * Format errors, check [here](#12-format-errors).
 
 </div>
 {% endraw %}
+
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+
+The student to be added cannot have the same name and phone number as an existing student.
+
+If there is a student with name `John Doe` and phone number `87654321` in the list:
+
+`add n/John Doe p/87654321...` is not allowed
+
+`add n/John Doe p/98765432...` is allowed
+
+`add n/Jane Doe p/87654321...` is allowed
+
+</div>
+
 
 #### **3.2 Creating a new tutorial**
 
@@ -265,7 +298,7 @@ Invalid usages
 
 * Enrolling student in a tutorial that they are already in
 
-    * *Error Message: This person is already in the tutorial*
+    * *Error Message: This student is already in the tutorial.*
 
 * Format errors, check [here](#12-format-errors)
 
@@ -274,6 +307,7 @@ Invalid usages
 
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **4. Viewing and retrieving data**
 
@@ -377,10 +411,11 @@ Invalid usages
 
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **5. Editing and updating data**
 
-The commands in this section are used edit records on the system, such as student information, tutorial information, payment, and attendance status
+The commands in this section are used to edit records on the system, such as student information, tutorial information, payment, and attendance status
 
 - [Editing student’s details](#51-editing-a-student)  
 - [Logging fees](#52-logging-fees-for-tutorial)  
@@ -396,7 +431,7 @@ Edit the personal information of students within EduVault
 
 Command: `edit`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Usage: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
 
@@ -429,8 +464,8 @@ Fields:
 
 Example Usage:
 
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
 {% raw %}
 <div markdown="1" class="smaller-text">
@@ -439,12 +474,26 @@ Invalid usage:
 * None of the option fields are input
     * *Error message: At least one field to edit must be provided.*
 * Values to edit result in a copy of a student already in EduVault
-    * *Error message: This person already exists in the address book.*
+    * *Error message: This student already exists in EduVault.*
 * `ATTENDANCE` & `TUTORIAL` & `PAYMENT` prefix used
     * Error message: PREFIX cannot be used in this command
 * Format errors, check [here](#12-format-errors)
 </div>
 {% endraw %}
+
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+
+The student cannot be edited to have the same name and phone number as an existing student.
+
+If there is a student with name `John Doe` and phone number `87654321` in the list:
+
+`add n/John Doe p/87654321...` is not allowed
+
+`add n/John Doe p/98765432...` is allowed
+
+`add n/Jane Doe p/87654321...` is allowed
+
+</div>
 
 #### **5.2 Logging fees for tutorial**
 
@@ -452,7 +501,7 @@ Invalid usage:
 
 Command:  `addfees`
 
-Usage: addfees `INDEX pay/PAYMENT`
+Usage: `addfees INDEX pay/PAYMENT`
 
 {% raw %}
 <div markdown="1" class="smaller-text">
@@ -460,12 +509,17 @@ Fields
 
 * `INDEX:` Index number as shown in the displayed list of the students.
     * Must be a positive integer 1, 2, 3…
-* `PAYMENT:` Amount in integer that a student have to pay
+* `PAYMENT:` Amount in integer that a student has to pay
 </div>
 {% endraw %}
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
-Fees added will be shown as an increase in overdue amount. If a student has advance payment, logged fees will decrease the advance payment first
+
+Fees can only be added if the student is enrolled in **at least one** tutorial. To enroll students into tutorial, check [here](#33-enrolling-student-into-a-tutorial).
+</div>
+
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+Fees added will be shown as an increase in overdue amount. If a student has advance payment, logged fees will decrease the advance payment first.
 </div>
 
 Example usages
@@ -486,7 +540,7 @@ Invalid usages
 
 Command:  `markpaid`
 
-Usage: markpaid `INDEX pay/PAYMENT`
+Usage: `markpaid INDEX pay/PAYMENT`
 
 {% raw %}
 <div markdown="1" class="smaller-text">
@@ -495,7 +549,7 @@ Fields
 
 * `INDEX:` Index number as shown in the displayed list of the students.
     * Must be a positive integer 1, 2, 3…
-* `PAYMENT:` Amount in integer that a student have paid
+* `PAYMENT:` Amount in integer that a student has paid
 </div>
 {% endraw %}
 
@@ -515,6 +569,7 @@ Invalid usages
 </div>
 {% endraw %}
 
+
 #### **5.4 Marking attendance of a student**
 
 Command: `mas`
@@ -526,14 +581,20 @@ Usage: `mas INDEX tut/TUTORIAL attend/ATTENDANCE`
 
 Fields
 
-* `INDEX`: Index number as shown in the displayed person list of the student to mark
+* `INDEX`: Index number of the student to mark, as shown in the displayed student list
     * Must be a positive integer 1, 2, 3…
 * `TUTORIAL`: Name of the tutorial the student is taking
 * `ATTENDANCE`: Date to mark the attendance for
     * Must be a valid date in the format dd/MM/yyyy and cannot be a future date
+    * If the month specified has fewer than 31 days, entering a day up to and including 31 will result in the date being adjusted to the final day of that month.
+    For e.g. 31/04/2024 will be adjusted to 30/04/2024, 30/02/2024 will be adjusted to 29/02/2024 and 31/02/2023 will be adjusted to 28/02/2023.
 
 </div>
 {% endraw %}
+
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+If the student has attendance marked for the corresponding week, the attendance of the student will not be marked.
+</div>
 
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
 If you want to mark the attendance of all students in a tutorial, 
@@ -550,7 +611,7 @@ Example usages
 
 Invalid usages
 * Marking attendance of student who does not take specified tutorial
-    * *Error message: Student STUDENT_NAME is not enrolled in TUTORIAL tutorial*
+    * *Error message: Student STUDENT_NAME is not enrolled in TUTORIAL tutorial, or TUTORIAL tutorial does not exist*
 * Marking attendance of student who already has attendance marked for the corresponding week for the specified tutorial
     * *Error message: Student STUDENT_NAME has attendance marked for the corresponding week of date ATTENDANCE for TUTORIAL tutorial*
 * Format errors, check [here](#12-format-errors)
@@ -561,6 +622,7 @@ Invalid usages
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
 You can click anywhere in the attendance box to show other weeks' attendance for that tutorial.
 </div>
+
 
 #### **5.5 Marking attendance of a tutorial**
 *Marks the attendance of all students enrolled in the tutorial for the specified date*
@@ -577,6 +639,8 @@ Fields
 * `TUTORIAL`: Name of the tutorial to mark the attendance for all students
 * `ATTENDANCE`: Date to mark the attendance for
     * Must be a valid date in the format dd/MM/yyyy and cannot be a future date
+    * If the month specified has fewer than 31 days, entering a day up to and including 31 will result in the date being adjusted to the final day of that month.
+      For e.g. 31/04/2024 will be adjusted to 30/04/2024, 30/02/2024 will be adjusted to 29/02/2024 and 31/02/2023 will be adjusted to 28/02/2023.
 
 </div>
 {% endraw %}
@@ -599,13 +663,14 @@ Invalid usages
     * *Error message: No tutorial class with the name TUTORIAL is found*
 * Marking attendance of a tutorial with no students enrolled
     * *Error message: No students are enrolled in TUTORIAL tutorial*
-* Marking attendance of a tutorial where **all students** already has attendance marked for the corresponding week
-    * *Error message: All students in TUTORIAL tutorial has attendance marked 
+* Marking attendance of a tutorial where **all students** already have attendance marked for the corresponding week
+    * *Error message: All students in TUTORIAL tutorial have attendance marked 
     for the corresponding week of date ATTENDANCE*
 * Format errors, check [here](#12-format-errors)
 
 </div>
 {% endraw %}
+
 
 #### **5.6 Unmarking attendance of a student**
 
@@ -618,11 +683,13 @@ Usage: `umas INDEX tut/TUTORIAL attend/ATTENDANCE`
 
 Fields
 
-* `INDEX`: Index number as shown in the displayed person list of the student to unmark.
+* `INDEX`: Index number of the student to unmark, as shown in the displayed student list
   * Must be a positive integer 1, 2, 3…
 * `TUTORIAL`: Name of the tutorial the student is taking.
 * `ATTENDANCE`: Date to unmark the attendance for.
   * Must be a valid date in the format dd/MM/yyyy and cannot be a future date
+  * If the month specified has fewer than 31 days, entering a day up to and including 31 will result in the date being adjusted to the final day of that month.
+    For e.g. 31/04/2024 will be adjusted to 30/04/2024, 30/02/2024 will be adjusted to 29/02/2024 and 31/02/2023 will be adjusted to 28/02/2023.
 
 </div>
 {% endraw %}
@@ -638,7 +705,7 @@ Example usages
 Invalid usages
 
 * Unmarking attendance of student who does not take specified tutorial
-    * *Error message: Student STUDENT_NAME is not enrolled in TUTORIAL tutorial*
+    * *Error message: Student STUDENT_NAME is not enrolled in TUTORIAL tutorial, or TUTORIAL tutorial does not exist*
 * Unmarking attendance of student who does not have attendance marked for the specified date and tutorial
     * *Error message: STUDENT_NAME's attendance for date ATTENDANCE for TUTORIAL tutorial has not been marked before*
 * Format errors, check [here](#12-format-errors)
@@ -683,6 +750,7 @@ Invalid usages
 {% endraw %}
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **6. Deleting data**
 
@@ -765,10 +833,11 @@ Deletes all tutorial, student and participation records
 Command:  `clear`
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Warning:**
-EduVault immediately saves once the command resolves. Hence, it is recommended to create a backup of the file `[JAR file location]/data/addressbook.json` before executing.
+EduVault immediately saves once the command resolves. Hence, it is recommended to create a backup of the file `[JAR file location]/data/eduvault.json` before executing.
 </div>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **7. Viewing help**
 Shows a message explaining how to access the help page.
@@ -776,6 +845,14 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Command: `help`
+
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+
+Extraneous parameters for commands that do not take in parameters (such as help, list, exit and clear) will be ignored.
+
+- e.g. if the command specifies help 123, it will be interpreted as help.
+
+</div>
 
 ---
 
@@ -792,9 +869,10 @@ EduVault data is saved in the hard disk automatically after any command that cha
 There is no need to save manually.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **10. Editing the data file**
-EduVault data is saved automatically as a JSON file at `[JAR file location]/data/addressbook.json`.
+EduVault data is saved automatically as a JSON file at `[JAR file location]/data/eduvault.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Warning:**
@@ -805,6 +883,7 @@ Furthermore, certain edits can cause EduVault to behave in unexpected ways (e.g.
 For reference, please refer to the [Developer Guide](https://ay2425s1-cs2103t-w08-2.github.io/tp/DeveloperGuide.html#storage-feature) for more details on editing the JSON file.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **11. Prefix Table** 
 
@@ -897,10 +976,11 @@ dd/MM/yyyy</code>
   </td>
 </tr>
 <tr>
-  <td><u>Format</u><br>The keyword provided should be a valid date of the format <code>dd/MM/yyyy</code>.<br><br><i>Multiple keywords are not allowed.<br>Duplicate prefixes are not allowed.</i></td>
+  <td><u>Format</u><br>The keyword provided should be a valid date of the format <code>dd/MM/yyyy</code>.<br><br>Note: If the month specified has fewer than 31 days, entering a day up to and including 31 will result in the date being adjusted to the final day of that month.
+    For e.g. 31/04/2024 will be adjusted to 30/04/2024, 30/02/2024 will be adjusted to 29/02/2024 and 31/02/2023 will be adjusted to 28/02/2023.<br><br><i>Multiple keywords are not allowed.<br>Duplicate prefixes are not allowed.</i></td>
 </tr>
 <tr>
-  <td><u>Invalid Usage</u><br>Keyword does not have the format specified above.<br><br><i>Error Message: Attendance must be in date format...</i></td>
+  <td><u>Invalid Usage</u><br>Keyword does not have the format specified above.<br><br><i>Error Message: Attendance must be a valid date in the format...</i></td>
 </tr>
 
  <!-- t/ prefix row -->
@@ -943,6 +1023,7 @@ dd/MM/yyyy</code>
 
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **12. Format Errors**
 
@@ -1013,6 +1094,7 @@ dd/MM/yyyy</code>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EduVault home folder.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **14. Known issues**
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the preferences.json file created by the application before running the application again.
