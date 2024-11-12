@@ -81,6 +81,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2425S1-CS2103T-W08-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -107,6 +109,8 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 #### General Interaction
 
@@ -138,6 +142,7 @@ How the parsing works:
 For more information on the interactions of features with the Logic Component, please refer [here](#implementation).
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2425S1-CS2103T-W08-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -176,6 +181,8 @@ The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+<div style="page-break-after: always;"></div>
 
 ### Common classes
 
@@ -566,11 +573,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
 | `* * *`  | admin       | list all students in the system                                                             <br/><br/><br/><br/>                                                      | show all students, can look through everyone's information at once, and allow other commands to reference the list index       |
 | `* * *`  | admin       | delete ex-students' information from the address book                                                    <br/>                                                        | clean and organise the database                                                                                                |
-| `* * *`  | admin       | edit students' information in the address book                                                    <br/><br/><br/><br/>                                                | Edit a student's information without having to remove and adding them in again                                                 |
+| `* * *`  | admin       | edit students' information in the address book                                                    <br/><br/><br/><br/>                                                | Edit a student's information without having to remove and add them in again                                                    |
 | `* * *`  | admin       | check for student's attendance for past weeks                                                        <br/><br/><br/>                                                  | arrange for make up classes and calculate payment                                                                              |
-| `* * *`  | admin       | record how much a student have paid                                                                                                                                   | track the overdue fees or advance payment                                                                                      |
-| `* * *`  | admin       | log monthly/term fees for students                                                                                                                                    | increment the tutorial fees for student                                                                                        |
-| `* * *`  | admin       | see the students' contacts(phone, email)                                                                                                                              | contact the students for adminstrative issues                                                                                  |
+| `* * *`  | admin       | record how much a student have paid                                                                                                                                   | track overdue fees or advance payments                                                                                         |
+| `* * *`  | admin       | log monthly/term fees for students                                                                                                                                    | increment the tutorial fees for students                                                                                       |
+| `* * *`  | admin       | see the students' contact details (phone, email)                                                                                                                      | contact the students for adminstrative issues                                                                                  |
 | `* * *`  | admin       | add a new student and his/her related information                                                                                                                     | keep track of new students joining the center                                                                                  |
 | `* * *`  | admin       | mark attendance of the students                                                                                                                                       | keep track of students' attendance                                                                                             |
 | `* * *`  | new admin   | be disallowed from keying in invalid grade                                                                                                                            | not enter invalid information                                                                                                  |
@@ -581,11 +588,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | admin       | search for students using their payment status                                                       <br/>         <br/>  <br/>                                       | quickly locate student information based on their payment status                                                               |
 | `* *`    | admin       | search for student using their tutroial enrollment status                                                              <br/><br/>                                     | quickly locate student information based on their enrolled tutorial                                                            |
 | `* *`    | admin       | check the number of students referred by a student                                                                                                                    | determine which referral reward the student is entitled to if the maximum limit has not been reached                           |
-| `* *`    | admin       | Creating a new tutorial class                                                                                                                                         | Track the various tutorials within the center                                                                                  |
-| `* *`    | admin       | Closing a tutorial class                                                                              <br/> <br/>                                                     | Maintain only opened tutorials in the system, keep the system organised. Also can undo mistakenly opened tutorial              |
-| `* *`    | admin       | enroll students into the tutorials                                                                                                     <br/>                          | Track which student is in which tutorial                                                                                       |
+| `* *`    | admin       | Creating a new tutorial class                                                                                                                                         | track the various tutorials within the center                                                                                  |
+| `* *`    | admin       | Closing a tutorial class                                                                              <br/> <br/>                                                     | maintain only opened tutorials in the system, keep the system organised. Also can undo mistakenly opened tutorial              |
+| `* *`    | admin       | enroll students into the tutorials                                                                                                     <br/>                          | track which student is in which tutorial                                                                                       |
 | `* *`    | admin       | unenrolling students from the tutorials                                                                <br/><br/><br/><br/>                                     <br/> | remove student from tutorial if student want to change class or quit, or tutorial is closing                                   |
-| `* *`    | admin       | record the grades of students                                                                                                                                         | Keep track of student's grades                                                                                                 |
+| `* *`    | admin       | record the grades of students                                                                                                                                         | keep track of student's grades                                                                                                 |
 | `* *`    | admin       | track the homework submitted by each students                                                                                                                         | keep track of their progress and inform tutor's easily as required                                                             |
 | `* *`    | admin       | archive records of past students                                                                                                                                      | make the data cleaner and easier to manage                                                                                     |
 | `* *`    | admin       | see which student have the most overdue amount                                                                                                                        | chase/remind the students for payment                                                                                          |
@@ -605,11 +612,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | expert admin | do mass tracking for student count                                                           <br/><br/><br/>                                                          | have a general statictic of the size of the tuition center                                                                     |
 
 
-*{More to be added}*
-
 ### Use cases
 
-(For all use cases below, the **System** refers to the `Eduvault` application and the **Actor** is the `Administrators` at tuition centers, unless specified otherwise)
+(For all use cases below, the **System** refers to the `EduVault` application and the **Actor** is the `Administrators` at tuition centers, unless specified otherwise)
 
 <br><br>
 **UC01 - View all students’ details**
@@ -665,16 +670,18 @@ Use case ends.
   * 2a2. System prompt admin to key in information again.
   * 2a3. Admin inputs information again.
 
-    Repeat 3a1 to 3a3 until Admin inputs the right information.
+    Repeat 2a1 to 2a3 until Admin inputs the right information.
   * 2a4. System adds the student and displays success status
 
   Use case ends.
 
-* 3a. Payment of the student has already being marked.
-  * 3a1. System returns a message on payment of student being marked already.
-  * 3a2. System returns a fail status.
+* 2a. Payment of the student has already being marked.
+  * 2a1. System returns a message on payment of student being marked already.
+  * 2a2. System returns a fail status.
+
 
   Use case ends.
+
 
 <br><br>
 **UC04 - Delete student from system**
@@ -755,16 +762,22 @@ Use case ends.
   Use case ends.
 
 
-* 2b. Admin inputs student or tutorial that do not exist.
+
+* 2b. Admin inputs student and/or tutorial that does not exist.
   * 2b1. System displays errors status.
   * 2b2. System prompts admin to key in information again.
   * 2b3. Admin inputs information again.
     
-    Repeat 2b1 to 2b3 until Admin inputs student and/or tutorial that exist.
+    Repeat 2b1 to 2b3 until Admin inputs student and tutorial that exist.
   * 2b4. System enrolls the student and displays success status.
   
   Use case ends.
 
+* 2c. Admin tried to enroll student in a tutorial that the student is already enrolled in.
+  * 2c1. System displays error status.
+  * 2c2. System prompts admin to check information again.
+  
+  Use case ends.
 <br><br>
 
 **UC07 - Unenroll student from tutorial**
@@ -802,6 +815,9 @@ Use case ends.
   
   Use case ends.
 
+* 2c. Admin keys in student that is no enrolled in the tutorial.
+  * 2c1. System displays error message.
+  * 2c2. System prompts admin to check information again.
 <br><br>
 
 **UC08 - Edit student information**
@@ -995,7 +1011,7 @@ Use case ends.
     * 2b2. System prompts admin to input information again.
     * 2b3. Admin inputs information again.
 
-      Repeat 2b1 to 2b3 until Admin inputs student that exists.
+      Repeat 2b1 to 2b3 until Admin inputs tutorial that exists.
     * 2b4. System marks attendance for the tutorial and displays success status.
 
   Use case ends.
@@ -1068,7 +1084,7 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Admin**: Admin at the tuition center who is in charge of all administrative processes
-* **System**: The Eduvault application
+* **System**: The EduVault application
 * **Student**: Current students who attend the tuition centre
 
 
@@ -1451,6 +1467,9 @@ or adding an invalid object as outlined in [Storage feature](#storage-feature).
       - Expected: List of students, with name matching ‘Alex’, who is enrolled in ‘Math’ tutorial and has overdue payment.
 
 ---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Effort**
 
 **Effort Report for Project**
@@ -1479,6 +1498,9 @@ expansions. We prioritized extensive testing and compliance with coding standard
 maintainability of our code. We went the extra mile for passion and our own learning.
 
 ---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Planned Enhancements**
 
 Team size: 5
